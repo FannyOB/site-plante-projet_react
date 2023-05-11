@@ -15,7 +15,7 @@ function Cart(){
 
     const [isOpen, setIsOpen] = useState(false)
    
-    
+    //const [isEmpty, setIsEmpty] = useState(true)
 
     return isOpen ? (
         <div className="lmj-cart">
@@ -26,17 +26,15 @@ function Cart(){
                     Fermer
                 </button>
             <h2>Pannier</h2>
-            <div>
-                Monstera : {monsteraPrice}€
-                <button onClick={() => updateCart(cart + 1)}>
-                    Ajouter
-                </button>
-            </div>
-            <h3>Total : {monsteraPrice * cart}€</h3>    
+            <div>Monstera : {monsteraPrice}€</div>
+            <button onClick={() => updateCart(cart + 1)}>Ajouter </button> {/**bouton qui permet d'ajouter un monstera */}
+            <h3>Total : {monsteraPrice * cart}€</h3>
+            <button onClick={() => updateCart(0) }>vider le panier</button>{/**quand je clique sur le bouton, cela réinitialise le state de ma cart  */}
+
         </div>
         
     ) : (
-        <div className="lmj-cart-toggle-closed">
+        <div className="lmj-cart-closed">
              <button 
                 className="lmj-cart-toggle-button"
                 onClick={() => setIsOpen(true)}
