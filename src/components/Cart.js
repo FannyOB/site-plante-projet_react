@@ -15,10 +15,16 @@ function Cart(){
 
     const [isOpen, setIsOpen] = useState(false)
    
+    
 
-    return isOpen(
+    return isOpen ? (
         <div className="lmj-cart">
-            <button onClick={() => setIsOpen(false)}>Fermer</button>
+            <button
+                className="lmj-cart-toggle-button"
+                onClick={() => setIsOpen(false)}
+                >
+                    Fermer
+                </button>
             <h2>Pannier</h2>
             <div>
                 Monstera : {monsteraPrice}€
@@ -29,6 +35,15 @@ function Cart(){
             <h3>Total : {monsteraPrice * cart}€</h3>    
         </div>
         
-    ) 
+    ) : (
+        <div className="lmj-cart-toggle-closed">
+             <button 
+                className="lmj-cart-toggle-button"
+                onClick={() => setIsOpen(true)}
+            >
+                Ouvrir le panier
+            </button>
+        </div>
+    )
 }
 export default Cart
