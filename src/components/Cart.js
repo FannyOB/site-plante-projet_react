@@ -6,13 +6,19 @@ import { useState } from "react"
 
 function Cart(){
     const monsteraPrice = 8
-    /*on crée un state cart. Avec useState, nous devons déclarer en même temps une fonction pour mettre à jour ce state ( updateCart  ), 
+
+    /*on crée un state cart
+     Avec useState, nous devons déclarer en même temps une fonction pour mettre à jour ce state ( updateCart  ), 
     et lui attribuer une valeur initiale, qui sera ici de 0 : */
     const[cart, updateCart] = useState(0)
+
+
+    const [isOpen, setIsOpen] = useState(false)
    
 
-    return(
+    return isOpen(
         <div className="lmj-cart">
+            <button onClick={() => setIsOpen(false)}>Fermer</button>
             <h2>Pannier</h2>
             <div>
                 Monstera : {monsteraPrice}€
