@@ -1,21 +1,16 @@
-import "../styles/Cart.css"
 import { useState } from "react"
+import "../styles/Cart.css"
 
 /**Cart=Panier, stateful component grâce à useState
  * cela veut dire que le composant Cart peut être re-render autant de fois que nécessaire, mais la valeur du panier sera préservée. */
 
-function Cart(){
-    const monsteraPrice = 8
+function Cart({ cart, updateCart }){
+    const [isOpen, setIsOpen] = useState(true)
+    const total= cart.reduce(
+        (acc, plantType) => acc + plantType.amount * plantType.price,
+        0
+    )
 
-    /*on crée un state cart
-     Avec useState, nous devons déclarer en même temps une fonction pour mettre à jour ce state ( updateCart  ), 
-    et lui attribuer une valeur initiale, qui sera ici de 0 : */
-    const[cart, updateCart] = useState(0)
-
-
-    const [isOpen, setIsOpen] = useState(false)
-   
-    //const [isEmpty, setIsEmpty] = useState(true)
 
     return isOpen ? (
         <div className="lmj-cart">
@@ -25,23 +20,35 @@ function Cart(){
                 >
                     Fermer
                 </button>
-            <h2>Pannier</h2>
-            <div>Monstera : {monsteraPrice}€</div>
-            <button onClick={() => updateCart(cart + 1)}>Ajouter </button> {/**bouton qui permet d'ajouter un monstera */}
-            <h3>Total : {monsteraPrice * cart}€</h3>
-            <button onClick={() => updateCart(0) }>vider le panier</button>{/**quand je clique sur le bouton, cela réinitialise le state de ma cart  */}
+                {cart.length > 0 ? (
+                <div>
+                    <h2>Panier</h2>
+                    <ul>
 
+                        {cart.map(({ name, price, amount }, index) => (
+                            <div key={`${name}- ${index}`}>
+                                {name} {price}€ x {amount} 
+                            </div>
+                        ))}
+                    </ul>
+                    <h3> Total: {total}€</h3>
+                    <button onClick={() => updateCart([]) }>vider le panier</button>{/**quand je clique sur le bouton, cela réinitialise le state de ma cart  */}
+                </div>
+                ):(
+                    
+                <div>Votre panier est vide</div>
+                    
+                )}   
         </div>
-        
-    ) : (
-        <div className="lmj-cart-closed">
-             <button 
-                className="lmj-cart-toggle-button"
-                onClick={() => setIsOpen(true)}
-            >
-                Ouvrir le panier
-            </button>
-        </div>
-    )
+        ) : (
+            <div className="lmj-cart-closed">
+                <button 
+                    className="lmj-cart-toggle-button"
+                    onClick={() => setIsOpen(true)}
+                >
+                    Ouvrir le panier
+                </button>
+            </div>
+        )
 }
 export default Cart
