@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import "../styles/Cart.css"
 
 /**Cart=Panier, stateful component grâce à useState
@@ -6,10 +6,20 @@ import "../styles/Cart.css"
 
 function Cart({ cart, updateCart }){
     const [isOpen, setIsOpen] = useState(true)
+    const [activeCategory, setActiveCategory] = useState("activeCategory, setActiveCategory")
+
     const total= cart.reduce(
         (acc, plantType) => acc + plantType.amount * plantType.price,
         0
     )
+//changement de titre en fonction du total du panier
+    useEffect(() => {
+        document.title = `LMJ: ${total}€ d'achats`
+    }, [total])
+
+    /*useEffect(() => {
+        alert(`J'aurai ${total}€ à payer 💸`)
+    }, [total, activeCategory] )    */
 
 
     return isOpen ? (

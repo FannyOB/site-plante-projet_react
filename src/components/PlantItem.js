@@ -8,10 +8,11 @@ function handleClick(plantName){
 
 }
 
-function PlantItem({name, cover, light, water}){
+function PlantItem({name, cover, light, water, price}){
     return(
         //création de la fonction handleClick, puis ajout du onClick={handleClick} ds la balise
         <li className="lmj-plant-item" onClick={() => handleClick(name)} >
+            <span className="lmj-plant-item-price">{price}€</span>
             <img className="lmj-plant-item-cover" src={ cover } alt={`${name} cover`} />
             {name}
             <div>

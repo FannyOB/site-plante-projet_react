@@ -1,11 +1,14 @@
+import { useState } from "react"
 import { plantList } from "../datas/plantList"
 import PlantItem from "./PlantItem"
+import Categories from "./Categories"
 import "../styles/ShoppingList.css"
 
 
 
 function ShoppingList({ cart, updateCart }){
-
+    const [activeCategory, setActiveCategory] = useState("")
+    
 //categories nous vient de la partie précédente pour récupérer toutes les catégories uniques de plantes.
     const categories = plantList.reduce(
         (acc, plant) =>
@@ -31,15 +34,16 @@ function ShoppingList({ cart, updateCart }){
 
 return(
         <div className="lmj-shopping-list">
-                <ul>
-                    {categories.map((cat) => (
-                        <li key={cat}>{cat}</li>
-                    ))}
-                </ul>
+               <Categories
+                    categories={categories}
+                    setActiveCategory={setActiveCategory}
+                    activeCategory={activeCategory}
+               />
                 
                 <ul className="lmj-plant-list">
-                    {plantList.map(({id, cover, name, water, light, price}) => (
-                        <div key={id}>
+                    {plantList.map(({id, cover, name, water, light, price, category}) => 
+                       !activeCategory || activeCategory === category ? (
+                       <div key={id}>
                             <PlantItem  
                                 cover={cover} 
                                 name={name} 
@@ -49,7 +53,7 @@ return(
                             />
                             <button onClick={() => addToCart( name, price )}>Ajouter </button> {/**bouton qui permet d'ajouter une plante*/}
                         </div>
-                    ))}
+                    ) : null )}
                 </ul>
             
             </div>

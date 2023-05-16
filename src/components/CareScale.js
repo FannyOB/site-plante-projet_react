@@ -13,7 +13,6 @@ const quantityLabel = {
   3: "beaucoup"
 }
 
-
 function CareScale({ scaleValue, careType }){
     
   const range = [1, 2, 3]
