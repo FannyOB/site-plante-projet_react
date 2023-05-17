@@ -55,7 +55,7 @@ export const plantList = [
     },
     {
         name:"olivier",
-        category:"exterieur",
+        category:"extérieur",
         id:"5pl",
         isBestSale: false,
         light: 1,

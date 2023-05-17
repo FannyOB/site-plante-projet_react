@@ -1,25 +1,41 @@
-import { useState } from "react";
+import {useState, useEffect } from "react";
 import "../styles/Footer.css"
 
 
-function Footer(){
+function Footer({cart}){
 /**On ajoute un input pour récupérer le mail de l'utilisateur, en appliquant la méthode de composant contrôlé.
  On s'inspire de la syntaxe du state que nous avons utilisée dans ce chapitre pour inputValue et setInputValue
 qui utilise useState  */
 
     const [inputValue, setInputValue] = useState("")
 
+    //useEffect(() =>{
+    //    console.log(`1️⃣ Cette alerte s'affiche à chaque rendu`)
+   // })
+
+       
+  //useEffect(() =>{
+    //console.log(`2️⃣ Cette alerte s'affiche au premier rendu`)
+    // }, [])
+
+     //useEffect(() =>{
+     //    console.log(`3️⃣ Cette alerte s'affiche la première fois et quand mon panier est mis à jour`)
+     //}, [cart])
+
+      useEffect(() =>{
+         return () =>
+       console.log(`4️⃣ Cette alerte s'affiche quand à chaque rendu`)
+     }, [cart])
+    
+
+
             //déclaration fonction
             function handleInput(e){
                 setInputValue(e.target.value)
             }
 
-            function handleBlur(){
-                if(!inputValue.includes('@')){
-                    alert("Attention, il n'y a pas d'@, ceci n'est pas une adresse valide 😥")
-                }
                     
-            }
+            
             return(
                 <footer className="lmj-footer">
                     <div className="lmj-footer-elem">
@@ -30,8 +46,7 @@ qui utilise useState  */
                             placeholder="Entrez votre mail"
                             onChange={handleInput}//appel de la fonction
                             value={inputValue}
-                            onBlur={handleBlur}//appel de la fonction
-                            /*l'événement blur (quand on clique en dehors du champ) qui déclenche une alerte si inputValue ne contient pas le caractère "@". Cette alerte devra préciser "Attention, il n'y a pas d'@, ceci n'est pas une adresse valide.”*/
+                           
                         />
                 </footer>
             )

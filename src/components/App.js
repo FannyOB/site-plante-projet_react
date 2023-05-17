@@ -9,10 +9,9 @@ import "../styles/Layout.css"
 function App(){
     //(Pour faire remoneter l'état&mise à jour du composant enfant) on commence par faire remonter cart ds App.js
     const[cart, updateCart] = useState([]) 
-
+    const [ isFooterShown, updateIsFooterShown] = useState()
     return(
         <div>
-
             <Banner>
                 <img src={logo} alt="La maison jungle" className="lmj-logo" />
                 <h1 className="lmj-title">La maison jungle</h1>
@@ -22,9 +21,11 @@ function App(){
                 <Cart cart={cart} updateCart={updateCart}/>   {/*Puis dans le JSX, je passe  cart   ainsi que  updateCart  en props : */}
                 <ShoppingList cart={cart} updateCart={updateCart}/>
             </div>
-           
-            <Footer />
-
+            { <button onClick = {() => updateIsFooterShown(!isFooterShown)} >
+                Cacher !
+            </button>}
+            {isFooterShown && <Footer cart={cart} />}
+            
         </div>
     )
 }

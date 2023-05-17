@@ -6,8 +6,7 @@ import "../styles/Cart.css"
 
 function Cart({ cart, updateCart }){
     const [isOpen, setIsOpen] = useState(true)
-    const [activeCategory, setActiveCategory] = useState("activeCategory, setActiveCategory")
-
+   // const items = Object.keys(cart)
     const total= cart.reduce(
         (acc, plantType) => acc + plantType.amount * plantType.price,
         0
@@ -16,12 +15,7 @@ function Cart({ cart, updateCart }){
     useEffect(() => {
         document.title = `LMJ: ${total}€ d'achats`
     }, [total])
-
-    /*useEffect(() => {
-        alert(`J'aurai ${total}€ à payer 💸`)
-    }, [total, activeCategory] )    */
-
-
+ 
     return isOpen ? (
         <div className="lmj-cart">
             <button
@@ -42,7 +36,7 @@ function Cart({ cart, updateCart }){
                         ))}
                     </ul>
                     <h3> Total: {total}€</h3>
-                    <button onClick={() => updateCart([]) }>vider le panier</button>{/**quand je clique sur le bouton, cela réinitialise le state de ma cart  */}
+                    <button onClick={() => updateCart([]) }>Vider le panier</button>{/**quand je clique sur le bouton, cela réinitialise le state de ma cart  */}
                 </div>
                 ):(
                     
