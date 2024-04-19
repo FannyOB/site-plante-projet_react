@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+You can discover this project just here : [My Web App](https://fannyob.github.io/site-plante-projet_react/).
 
 ## Available Scripts
 
