@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Site Web vente de plante! 🌱 🪴 
 
 You can discover this project just here : [My Web App](https://fannyob.github.io/site-plante-projet_react/).
 
