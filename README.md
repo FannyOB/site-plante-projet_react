@@ -1,4 +1,4 @@
-# Site Web vente de plante! 🌱 🪴 
+# Site Web vente de plantes! 🌱 🪴 
 
 You can discover this project just here : [My Web App](https://fannyob.github.io/site-plante-projet_react/).
 
